@@ -1,0 +1,15 @@
+AddDefaultCharset UTF-8 
+
+RewriteEngine On
+
+Options All -Indexes
+
+# Редиректы
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.*)$ index.php?action=$1 [L,QSA]
+
+# Ошибки
+ErrorDocument 404 /404.html
