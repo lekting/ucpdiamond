@@ -4,6 +4,7 @@ require_once DIR_SYSTEM.'engine/registry.php';
 require_once DIR_SYSTEM.'engine/loader.php';
 require_once DIR_SYSTEM.'engine/db/mysqli.php';
 require_once DIR_SYSTEM.'engine/router.php';
+require_once DIR_SYSTEM.'engine/user.php';
 
 $registry = new Registry();
 $loader = new \Twig\Loader\FilesystemLoader(DIR_TEMPLATE);
@@ -25,16 +26,21 @@ $registry->set('router', $router);
 $loader = new Loader($registry);
 $registry->set('load', $loader);
 
+$user = new User($registry);
+$registry->set('user', $user);
+
+$registry->set('servers', $servers);
+
 require_once DIR_SYSTEM . 'engine/controller.php';
 
 $action = 'main';
 if(isset($_GET['action']))
     $action = stripslashes(htmlspecialchars(trim($_GET['action'])));
 
-$data = $loader->controller($action);
+$data = $loader->controller($action, array(), true);
 
 if(!$data) {
-    print_r('Error: couldn\'t load file');
+    print_r('Error: couldn\'t load file '. $action);
     return;
 }
 

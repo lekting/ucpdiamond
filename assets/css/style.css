@@ -1,0 +1,51 @@
+::selection {
+	background: #f8e93f;
+	color: #202020;
+}
+
+::-moz-selection {
+	background: #f8e93f;
+	color: #202020;
+}
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+ul,
+li {
+	margin: 0;
+}
+
+input,
+textarea,
+button,
+a,
+input:hover,
+textarea:hover,
+button:hover,
+a:link,
+input:link,
+textarea:link,
+button:link,
+input:active,
+textarea:active,
+button:active,
+a:active {
+	outline: 0;
+}
+
+.textcenter {
+	text-align: center;
+}
+
+.textleft {
+	text-align: left;
+}
+
+.textright {
+	text-align: right;
+}

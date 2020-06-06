@@ -1,0 +1,328 @@
+{{ head }}
+
+<link href="/assets\css\vip.css" rel="stylesheet" />
+<body class="vippage">
+    {{ header }}
+    <section class="vip-section">
+        <i class="fly-object fly-vipser"><img src="/assets/images\vip\vip-fly.png" alt="" /></i>
+        <div class="container-fluid">
+            <div class="vip-wrap">
+                <i class="fly-object fly-man-vip"><img src="/assets/images\vip\vip-man.png" alt="" /></i>
+                <div class="silver">
+                    <i class="v-icon"><img src="/assets/images\vip\icon-silver-2.png" alt="" /></i>
+                    <p class="v-name">Silver</p>
+                    <ul>
+                        <li>
+                            Лечение в 2 раза быстрее, возможность автоматического<br />
+                            лечения в любое время
+                        </li>
+                        <li>Ускоренная прокачка навыков стрельбы</li>
+                        <li>+1 exp каждый третий PayDay</li>
+                        <li>Ускоренная прокачка навыков на работах</li>
+                        <li>Увеличенная вместимость инвентаря на 25кг</li>
+                        <li>+1 семейное очко каждый PayDay</li>
+                    </ul>
+                    <button class="main-button wide mb10" data-toggle="modal" data-target="#vipSilver">КУПИТЬ</button>
+                </div>
+                <div class="platinum">
+                    <i class="v-icon"><img src="/assets/images\vip\icon-platinum.png" alt="" /></i>
+                    <p class="v-name">Platinum</p>
+                    <ul>
+                        <li>Все преимущества Silver VIP</li>
+                        <li>Возможность владеть двумя домами</li>
+                        <li>Возможность владеть двумя т/c на паркингах</li>
+                        <li>При смерти в гетто Вы не теряете деньги</li>
+                        <li>Уровень голода сокращается в 2 раза медленее</li>
+                        <li>+2 семейных очка каждый PayDay</li>
+                        <li>+2 семейных очка за каждую игру в семейном центре</li>
+                        <li>
+                            Скидка 50% на ремонт т/c, оплату автомобильных штрафов,<br />
+                            штрафов с камер, доставку т/c к месту парковки
+                        </li>
+                    </ul>
+                    <button class="main-button wide mb10" data-toggle="modal" data-target="#vipPlatinum">КУПИТЬ</button>
+                    <div class="text-center"></div>
+                </div>
+                <div class="brilliant">
+                    <i class="v-icon"><img src="/assets/images\vip\icon-silver.png" alt="" /></i>
+                    <p class="v-name">Brilliant</p>
+                    <ul>
+                        <li>Все преимущества Platinum VIP</li>
+                        <li>Возможность владеть тремя бизнесами</li>
+                        <li>Возможность владеть тремя т/c на паркингах</li>
+                        <li>X2 exp каждый PayDay</li>
+                        <li>VIP чат</li>
+                        <li>+3 семейных очка каждый PayDay</li>
+                        <li>Скидка 40% на выкуп угнанных т/c</li>
+                        <li>Возможность выбрать больницу для лечения</li>
+                        <li>
+                            +5 бриллиантов каждый час,<br />
+                            только с 10 уровня
+                        </li>
+                    </ul>
+                    <p>
+                        <small>*Возможно владеть только 1 бизнесом из компаний (СТО/ТК/Служба такси)</small> <small>*Отелем можно владеть так же дополнительно, не учитывая остальные бизнесы</small>
+                        <small>*При окончании Brilliant VIP аккаунта и наличии 3х бизнесов, 2 самых дешевых будут проданы по гос. цене, аналогично для т/c на паркингах, а так же для дополнительных домов.</small>
+                        <small>При наличии 3х т/c на паркингах, если будет приобретен Platinum VIP до окончания Brilliant VIP - будет продано одно самое дешевое т/c</small>
+                    </p>
+                    <button class="main-button wide mb10" data-toggle="modal" data-target="#vipBrilliant">КУПИТЬ</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="vipSilver" data-keyboard="false" data-backdrop="static" class="modal vip-modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <i class="close-but" data-dismiss="modal"><img src="/assets/images\close-button.svg" alt="" /></i>
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="vipBuy-grid">
+                    <div class="vip-wrap one">
+                        <div class="silver">
+                            <i class="v-icon"><img src="/assets/images\vip\icon-silver-2.png" alt="" /></i>
+                            <p class="v-name">Silver</p>
+                            <ul>
+                                <li>
+                                    Лечение в 2 раза быстрее, возможность автоматического<br />
+                                    лечения в любое время
+                                </li>
+                                <li>Ускоренная прокачка навыков стрельбы</li>
+                                <li>+1 exp каждый третий PayDay</li>
+                                <li>Ускоренная прокачка навыков на работах</li>
+                                <li>Увеличенная вместимость инвентаря на 25кг</li>
+                                <li>+1 семейное очко каждый PayDay</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="vip-desc">
+                        <p class="mini-title">Выберите срок</p>
+                        <form action="/donate/vip/" method="GET">
+                            <div class="enter-time-checkbox">
+                                <input class="checkbox-time" type="radio" value="silver.1" name="order" id="silver-1" />
+                                <label for="silver-1">
+                                    <p class="v-date"><img src="/assets/images\ico_calendar.svg" alt="" />1 месяц</p>
+                                    <p class="v-price">
+                                        <span>&nbsp;</span>
+                                        <strong>
+                                            200<!-- 200 -->
+                                            руб.
+                                        </strong>
+                                        <small>&nbsp;</small>
+                                    </p>
+                                </label>
+                                <input class="checkbox-time" checked="" type="radio" value="silver.2" name="order" id="silver-2" />
+                                <label for="silver-2">
+                                    <span class="bage red">Популярное</span>
+                                    <p class="v-date"><img src="/assets/images\ico_calendar.svg" alt="" />2 месяца</p>
+                                    <p class="v-price red">
+                                        <span>400 руб.<!-- 400 --></span>
+                                        <strong>
+                                            300<!-- 300 -->
+                                            руб.
+                                        </strong>
+                                        <small>
+                                            выгода 100<!-- 100 -->
+                                            руб.
+                                        </small>
+                                    </p>
+                                </label>
+                                <input class="checkbox-time" type="radio" value="silver.3" name="order" id="silver-3" />
+                                <label for="silver-3">
+                                    <span class="bage green">Выгодное</span>
+                                    <p class="v-date"><img src="/assets/images\ico_calendar.svg" alt="" />6 месяцев</p>
+                                    <p class="v-price red">
+                                        <span>900 руб.<!-- 900 --></span>
+                                        <strong>
+                                            750<!-- 750 -->
+                                            руб.
+                                        </strong>
+                                        <small>
+                                            выгода 150<!--150-->
+                                            руб.
+                                        </small>
+                                    </p>
+                                </label>
+                            </div>
+                            <button class="main-button">КУПИТЬ</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="vipPlatinum" data-keyboard="false" data-backdrop="static" class="modal vip-modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <i class="close-but" data-dismiss="modal"><img src="/assets/images\close-button.svg" alt="" /></i>
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="vipBuy-grid">
+                    <div class="vip-wrap one">
+                        <div class="platinum">
+                            <i class="v-icon"><img src="/assets/images\vip\icon-platinum.png" alt="" /></i>
+                            <p class="v-name">Platinum</p>
+                            <ul>
+                                <li>Все преимущества Silver VIP</li>
+                                <li>Возможность владеть двумя домами</li>
+                                <li>Возможность владеть двумя т/c на паркингах</li>
+                                <li>При смерти в гетто Вы не теряете деньги</li>
+                                <li>Уровень голода сокращается в 2 раза медленее</li>
+                                <li>+2 семейных очка каждый PayDay</li>
+                                <li>+2 семейных очка за каждую игру в семейном центре</li>
+                                <li>
+                                    Скидка 50% на ремонт т/c, оплату автомобильных штрафов,<br />
+                                    штрафов с камер, доставку т/c к месту парковки
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="vip-desc">
+                        <p class="mini-title">Выберите срок</p>
+                        <form action="/donate/vip/" method="GET">
+                            <div class="enter-time-checkbox">
+                                <input class="checkbox-time" type="radio" value="platinum.1" name="order" id="platinum-1" />
+                                <label for="platinum-1">
+                                    <p class="v-date"><img src="/assets/images\ico_calendar.svg" alt="" />1 месяц</p>
+                                    <p class="v-price">
+                                        <span>&nbsp;</span>
+                                        <strong>
+                                            400<!--400-->
+                                            руб.
+                                        </strong>
+                                        <small>&nbsp;</small>
+                                    </p>
+                                </label>
+                                <input class="checkbox-time" checked="" type="radio" value="platinum.2" name="order" id="platinum-2" />
+                                <label for="platinum-2">
+                                    <span class="bage red">Популярное</span>
+                                    <p class="v-date"><img src="/assets/images\ico_calendar.svg" alt="" />2 месяца</p>
+                                    <p class="v-price red">
+                                        <span>800 руб.</span>
+                                        <strong>
+                                            590<!--590-->
+                                            руб.
+                                        </strong>
+                                        <small>
+                                            выгода 210<!--210-->
+                                            руб.
+                                        </small>
+                                    </p>
+                                </label>
+                                <input class="checkbox-time" type="radio" value="platinum.3" name="order" id="platinum-3" />
+                                <label for="platinum-3">
+                                    <span class="bage green">Выгодное</span>
+                                    <p class="v-date"><img src="/assets/images\ico_calendar.svg" alt="" />6 месяцев</p>
+                                    <p class="v-price red">
+                                        <span>1770 руб.</span>
+                                        <strong>
+                                            1500<!--1500-->
+                                            руб.
+                                        </strong>
+                                        <small>
+                                            выгода 270<!--270-->
+                                            руб.
+                                        </small>
+                                    </p>
+                                </label>
+                            </div>
+                            <button class="main-button">КУПИТЬ</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="vipBrilliant" data-keyboard="false" data-backdrop="static" class="modal vip-modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <i class="close-but" data-dismiss="modal"><img src="/assets/images\close-button.svg" alt="" /></i>
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="vipBuy-grid">
+                    <div class="vip-wrap one">
+                        <div class="brilliant">
+                            <i class="v-icon"><img src="/assets/images\vip\icon-silver.png" alt="" /></i>
+                            <p class="v-name">Brilliant</p>
+                            <ul>
+                                <li>Все преимущества Platinum VIP</li>
+                                <li>Возможность владеть тремя бизнесами</li>
+                                <li>Возможность владеть тремя т/c на паркингах</li>
+                                <li>X2 exp каждый PayDay</li>
+                                <li>VIP чат</li>
+                                <li>+3 семейных очка каждый PayDay</li>
+                                <li>Скидка 40% на выкуп угнанных т/c</li>
+                                <li>Возможность выбрать больницу для лечения</li>
+                                <li>
+                                    +5 бриллиантов каждый час,<br />
+                                    только с 10 уровня
+                                </li>
+                            </ul>
+                            <p>
+                                <small>*Возможно владеть только 1 бизнесом из компаний (СТО/ТК/Служба такси)</small> <small>*Отелем можно владеть так же дополнительно, не учитывая остальные бизнесы</small>
+                                <small>*При окончании Brilliant VIP аккаунта и наличии 3х бизнесов, 2 самых дешевых будут проданы по гос. цене, аналогично для т/c на паркингах, а так же для дополнительных домов.</small>
+                                <small>При наличии 3х т/c на паркингах, если будет приобретен Platinum VIP до окончания Brilliant VIP - будет продано одно самое дешевое т/c</small>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="vip-desc">
+                        <p class="mini-title">Выберите срок</p>
+                        <form action="/donate/vip/" method="GET">
+                            <div class="enter-time-checkbox">
+                                <input class="checkbox-time" type="radio" value="brilliant.1" name="order" id="brilliant-1" />
+                                <label for="brilliant-1">
+                                    <p class="v-date"><img src="/assets/images\ico_calendar.svg" alt="" />1 месяц</p>
+                                    <p class="v-price">
+                                        <span>&nbsp;</span>
+                                        <strong>
+                                            500<!--500-->
+                                            руб.
+                                        </strong>
+                                        <small>&nbsp;</small>
+                                    </p>
+                                </label>
+                                <input class="checkbox-time" checked="" type="radio" value="brilliant.2" name="order" id="brilliant-2" />
+                                <label for="brilliant-2">
+                                    <span class="bage red">Популярное</span>
+                                    <p class="v-date"><img src="/assets/images\ico_calendar.svg" alt="" />2 месяца</p>
+                                    <p class="v-price red">
+                                        <span>1000 руб.</span>
+                                        <strong>
+                                            890<!--890-->
+                                            руб.
+                                        </strong>
+                                        <small>
+                                            выгода 110<!--110-->
+                                            руб.
+                                        </small>
+                                    </p>
+                                </label>
+                                <input class="checkbox-time" type="radio" value="brilliant.3" name="order" id="brilliant-3" />
+                                <label for="brilliant-3">
+                                    <span class="bage green">Выгодное</span>
+                                    <p class="v-date"><img src="/assets/images\ico_calendar.svg" alt="" />6 месяцев</p>
+                                    <p class="v-price red">
+                                        <span>2700 руб.</span>
+                                        <strong>
+                                            2200<!--2200-->
+                                            руб.
+                                        </strong>
+                                        <small>
+                                            выгода 500<!--500-->
+                                            руб.
+                                        </small>
+                                    </p>
+                                </label>
+                            </div>
+                            <button class="main-button">КУПИТЬ</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ serversmodal }}
+    <script src="/assets\owl\owl.carousel.min.js"></script>
+    <script src="/assets\bootstrap\js\bootstrap.min.js"></script>
+    <script src="/assets\js\anime.min.js"></script>
+    <script src="/assets\js\jquery.toTop.min.js"></script>
+    <script src="/assets\js\jquery.dd.min.js"></script>
+    <script src="/assets\js\clipboard.min.js"></script>
+    <script src="/assets\js\jquery.scrollbar.min.js"></script>
+    <script src="/assets\js\script.js?28052020210218"></script>
+    <script src="/assets\js\script_all.js"></script>
+</body>
+</html>

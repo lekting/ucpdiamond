@@ -1,0 +1,226 @@
+{{ head }}
+<body class="donate">
+    <div id="donateman"></div>
+    {{ header }}
+    <div id="content" class="content">
+        <div class="container-fluid">
+            <div class="middle-width">
+                <h1 class="textcenter" id="pagetitle">Донат</h1>
+                <div class="enterserver-wrap">
+                    <div class="loginwarn serverwarn bad">
+                        <p>
+                            <strong>Ошибка</strong><br />
+                            Выберите сервер!
+                        </p>
+                    </div>
+                    <p>Выберите сервер</p>
+                    {% for key, server in servers %}
+                        <div class="server-item">
+                            <input type="radio" class="radio" name="enterserver" id="{{ server['VISIBLE_NAME']|lower }}" value="{{ key }}" onclick="app.update_packages_prices();" />
+                            <label for="{{ server['VISIBLE_NAME']|lower }}"><img class="color-img" src="{{ server['ICON_PATH'] }}" alt="" /><img class="dark-img" src="{{ server['ICON_PATH_DARK'] }}" alt="" /> {{ server['VISIBLE_NAME'] }}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="enterserver-select-wrap">
+                    <div class="loginwarn serverwarn bad">
+                        <p>
+                            <strong>Ошибка</strong><br />
+                            Выберите сервер!
+                        </p>
+                    </div>
+                    <select class="enterserver-select" name="enterserver" onchange="showValue(this.value);app.update_packages_prices();">
+                        <option selected="" disabled="">Выберите сервер</option>
+                        {% for key, server in servers %}
+                            <option data-image="{{ server['ICON_PATH'] }}" value="{{ key }}">{{ server['VISIBLE_NAME'] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 hidden-xs hidden-sm">
+                        <div class="donatebuttons">
+                            <a data-toggle="modal" data-target="#whatbuy"><img src="/assets/images\shopping-cart.svg" alt="" />Что можно купить</a> <a data-toggle="modal" data-target="#sales"><img src="/assets/images\sales.svg" alt="" />Акции</a>
+                        </div>
+                        <div class="ecconomyman">
+                            <p>
+                                Экономь и получай бонусы,<br />
+                                покупая пакеты!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="view-error-userauth">
+                            <i class="close-but"><img src="/assets/images\close-button.svg" alt="" /></i>
+                            <div id="userauth_response_error"></div>
+                        </div>
+                        <div class="iconinput">
+                            <input id="user-nickname" type="text" class="main-inp right-ico username" placeholder="Введите Ваш ник" /><i class="input-ico user-ico"><img src="/assets/images\mi-userroom.svg" alt="" /></i>
+                            <div class="loginwarn nickwarn bad"></div>
+                        </div>
+                        <div class="iconinput" id="donate_summ">
+                            <input id="user-summ" type="text" class="main-inp right-ico passworde" placeholder="Сумма пополнения" /><i class="input-ico pass-ico"><img src="/assets/images\credit-cards-payment.svg" alt="" /></i>
+                            <div class="loginwarn summwarn bad"></div>
+                        </div>
+                        <div class="iconinput">
+                            <input id="user-email" type="text" class="main-inp right-ico email" placeholder="Ваш E-mail" /><i class="input-ico email-ico"><img src="/assets/images\ico_dog.svg" alt="" /></i>
+                            <div class="loginwarn secretwarn bad"></div>
+                        </div>
+                        <div class="bag-buy-info" style="display: none;"></div>
+                        <a id="payment_init_btn" onclick="app.donate_init();" class="main-button wide log-in-but">Пополнить счёт</a><a id="payment_init_loader" style="display: none;"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="bags-grid">
+                <div>
+                    <p><strong>Быстрый старт</strong></p>
+                    <p class="bonus">
+                        700.000 $<br />
+                        +50% ко всем скиллам
+                    </p>
+                    <div class="price">349 <span>рублей</span></div>
+                    <i><img src="/assets/images\bag1.png" alt="" /></i> <a onclick="app.donate_package(1);" class="main-button">Купить</a>
+                </div>
+                <div>
+                    <p><strong>Миллионер по щелчку</strong></p>
+                    <p class="bonus">
+                        1.000.000 $<br />
+                        +100% ко всем скиллам<br />
+                        +Решительность
+                    </p>
+                    <div class="price">499 <span>рублей</span></div>
+                    <i><img src="/assets/images\bag2.png" alt="" /></i> <a onclick="app.donate_package(2);" class="main-button">Купить</a>
+                </div>
+                <div>
+                    <p><strong>Хватит на все</strong></p>
+                    <p class="bonus">
+                        2.000.000 $<br />
+                        +Все скиллы<br />
+                        +Все лицензии<br />
+                        +Аксессуар рюкзак
+                    </p>
+                    <div class="price">999 <span>рублей</span></div>
+                    <i><img src="/assets/images\bag3.png" alt="" /></i> <a onclick="app.donate_package(3);" class="main-button">Купить</a>
+                </div>
+                <div>
+                    <p><strong>Олигарх</strong></p>
+                    <p class="bonus">
+                        10.000.000 $<br />
+                        +Все скиллы<br />
+                        +Все лицензии<br />
+                        +Бесплатное создание семьи
+                    </p>
+                    <div class="price">3900 <span>рублей</span></div>
+                    <i><img src="/assets/images\bag4.png" alt="" /></i> <a onclick="app.donate_package(4);" class="main-button">Купить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Sales -->
+    <div id="sales" data-keyboard="false" data-backdrop="static" class="modal pay-modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <i class="close-but" data-dismiss="modal"><img src="/assets/images\close-button.svg" alt="" /></i>
+        <div class="modal-dialog modal-md">
+            <div class="modal-content textcenter">
+                <i class="circle-ico clearer"><img src="/assets/images\sales.svg" alt="" /></i>
+                <p class="large-title">Акции</p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="main-table whatbuy-table sales-table">
+                            <tr>
+                                <th colspan="2" class="textcenter">При пополнении счета на сумму, вы получаете дополнительный % от суммы пополнения</th>
+                            </tr>
+                            <tr>
+                                <td>от 250 рублей</td>
+                                <td>5%</td>
+                            </tr>
+                            <tr>
+                                <td>от 500 рублей</td>
+                                <td>10%</td>
+                            </tr>
+                            <tr>
+                                <td>от 1000 рублей</td>
+                                <td>15%</td>
+                            </tr>
+                            <tr>
+                                <td>от 3000 рублей</td>
+                                <td>20%</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- <div class="dark-blck textwhite"> <p>Рекомендуем сыграть в <a href="/roulette">беспроигрышную рулетку</a><br>проекта Diamond RolePlay! <br> <br> <a href="/roulette/about">Подробнее о рулетке</a> <font color="#C0C0C0">(необходима авторизация в личном кабинете)</font></p> </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- Modal What You Can Buy -->
+    <div id="whatbuy" data-keyboard="false" data-backdrop="static" class="modal pay-modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <i class="close-but" data-dismiss="modal"><img src="/assets/images\close-button.svg" alt="" /></i>
+        <div class="modal-dialog modal-md">
+            <div class="modal-content textcenter">
+                <i class="circle-ico clearer"><img src="/assets/images\shopping-cart.svg" alt="" /></i>
+                <p class="large-title">Что можно купить</p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="main-table whatbuy-table">
+                            <tr>
+                                <td>Игровая валюта</td>
+                                <td>
+                                    1 рубль = 2500$<br />
+                                    (на Ruby и Gold 1 рубль = 1200$)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Смена ника</td>
+                                <td>20 рублей</td>
+                            </tr>
+                            <tr>
+                                <td>Смена цвета кожи и национальности</td>
+                                <td>75 рублей</td>
+                            </tr>
+                            <tr>
+                                <td>Смена игрового возраста</td>
+                                <td>50 рублей</td>
+                            </tr>
+                            <tr>
+                                <td>Снятие 1 варна</td>
+                                <td>75 рублей</td>
+                            </tr>
+                            <tr>
+                                <td>Смена пола</td>
+                                <td>15 рублей</td>
+                            </tr>
+                            <tr>
+                                <td>Законопослушность (+10)</td>
+                                <td>10 рублей</td>
+                            </tr>
+                            <tr>
+                                <td>Игра в рулетку</td>
+                                <td>49 рублей</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ serversmodal }}
+    <script src="/assets/owl\owl.carousel.min.js"></script>
+    <script src="/assets/bootstrap\js\bootstrap.min.js"></script>
+    <script src="/assets/js\anime.min.js"></script>
+    <script src="/assets/js\jquery.toTop.min.js"></script>
+    <script src="/assets\js\tippy.min.js"></script>
+    <script src="/assets/js\jquery.dd.min.js"></script>
+    <script src="/assets/js\clipboard.min.js"></script>
+    <script src="/assets/js\jquery.scrollbar.min.js"></script>
+    <script src="/assets/js\script.js"></script>
+    <script>
+        $(document).ready(function (e) {
+            try {
+                $(".enterserver-select").msDropDown();
+            } catch (e) {
+                alert(e.message);
+            }
+        });
+    </script>
+    <script src="/assets/js\script_all.js"></script>
+    <script src="/assets/js\app.js"></script>
+</body>
+</html>

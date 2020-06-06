@@ -1,0 +1,74 @@
+a.vk-post-link {
+    text-decoration: none;
+    color: gray;
+}
+
+a.vk-post-link:link {
+    text-decoration: none;
+    color: gray;
+}
+
+a.vk-post-link:visited {
+    text-decoration: none;
+    color: gray;
+}
+
+a.vk-post-link:hover {
+    text-decoration: underline;
+    color: gray;
+}
+
+a.vk-post-link:active {
+    text-decoration: underline;
+    color: gray;
+}
+
+a.vk-post-views {
+    cursor: default;
+    text-decoration: none;
+    color: gray;
+}
+
+a.vk_details:link {
+    text-decoration: none;
+}
+
+a.vk_details:visited {
+    text-decoration: none;
+}
+
+a.vk_details:hover {
+    text-decoration: underline;
+}
+
+a.vk_details:active {
+    text-decoration: underline;
+}
+
+img.vk-likes {
+    width: 18px;
+    height: 18px;
+}
+
+img.vk-views {
+    width: 17px;
+    height: 17px;
+}
+
+img.vk-attachment {
+    width: 708px;
+}
+
+img.vk-post-icon {
+    width: 21px;
+    height: 21px;
+}
+
+p.vk-post-date {
+    color: gray;
+    font-size: 56%
+}
+
+p.vk-post-stats {
+    font-size: 90%
+}

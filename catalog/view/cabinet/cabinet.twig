@@ -1,0 +1,139 @@
+{{ head }}
+<body class="cabinet">
+    {{ header }}
+    <div id="content" class="content">
+        <div class="container-fluid">
+            <div class="high-width">
+                <div class="user-head-box">
+                    <i id="levelbar"></i>
+                    <div>
+                        <p class="usernickname">{{ user['nickname'] }}</p>
+                        <p class="warning">Предупреждения: {{ user['warn'] }}</p>
+                        <p class="warning">Последний вход: {{ user['lastdate'] }}</p>
+                        <p class="warning">Состояние: <font color="{{ user['status'] == 0 ? 'gray' : 'green' }}">{{ user['status'] == 0 ? 'Не в игре' : 'В игре' }}</font></p>
+                    </div>
+                    <i class="userhead"><img src="/assets/images/person-1.png" alt="" /></i>
+                    <div class="server-view"><img src="/assets/images/servers/trilliant.svg" alt="" /> Trilliant</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="user-cab-menu-open"><img src="/assets/images/menu.svg" alt="" />Меню игрока</div>
+                        <ul class="cabinet-menu">
+                            <li class="yellow-list"><a href="/cabinet">Статистика персонажа</a></li>
+                            <li><a href="/top/list">ТОП игроков</a></li>
+                            <li><a href="/cabinet/achievements">Достижения</a></li>
+                            <li><a href="/cabinet/bank">Банковские счета</a></li>
+                            <li><a href="/protection">Защита аккаунта</a></li>
+                            <li><a href="/property">Оплата имущества</a></li>
+                            <li><a href="/roulette">Рулетка</a></li>
+                            <li><a href="/cabinet/voicechat">Голосовой чат</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="content-whitebox">
+                            <ul class="gun-list">
+                                <li>
+                                    <div class="gun-img"><img src="/assets/images/guns/spistol.png" alt="" /></div>
+                                    <div id="sdpistol"></div>
+                                </li>
+                                <li>
+                                    <div class="gun-img"><img src="/assets/images/guns/pistol.png" alt="" /></div>
+                                    <div id="deagle"></div>
+                                </li>
+                                <li>
+                                    <div class="gun-img"><img src="/assets/images/guns/shotgun.png" alt="" /></div>
+                                    <div id="shoutgun"></div>
+                                </li>
+                                <li>
+                                    <div class="gun-img"><img src="/assets/images/guns/mp5.png" alt="" /></div>
+                                    <div id="mp5"></div>
+                                </li>
+                                <li>
+                                    <div class="gun-img"><img src="/assets/images/guns/ak47.png" alt="" /></div>
+                                    <div id="ak47"></div>
+                                </li>
+                                <li>
+                                    <div class="gun-img"><img src="/assets/images/guns/m4.png" alt="" /></div>
+                                    <div id="m4"></div>
+                                </li>
+                            </ul>
+                            <ul class="stat-list">
+                                <li>
+                                    <p>Уровень</p>
+                                    <p><strong>{{ user['level'] }}</strong></p>
+                                </li>
+                                <li>
+                                    <p>Возраст</p>
+                                    <p><strong>{{ user['age'] }}</strong></p>
+                                </li>
+                                <li>
+                                    <p>Наличные деньги</p>
+                                    <p><strong>${{ user['money'] }}</strong></p>
+                                </li>
+                                <li class="long">
+                                    <p>Фракция</p>
+                                    <p><strong>Не состоит во фракции</strong></p>
+                                </li>
+                                <li>
+                                    <p>Банковский счёт</p>
+                                    <p><strong>${{ user['bank'] }}</strong></p>
+                                </li>
+                                <li>
+                                    <p>Ранг</p>
+                                    <p><strong>&nbsp;&#8211;</strong></p>
+                                </li>
+                                <li>
+                                    <p>Домашний транспорт</p>
+                                    <p><strong>отсутствует</strong></p>
+                                </li>
+                                <li>
+                                    <p>Номер бизнеса</p>
+                                    <p><strong>отсутствует</strong></p>
+                                </li>
+                                <li>
+                                    <p>Номер телефона</p>
+                                    <p><strong>{{ user['phone'] != 0 ? user['phone'] : 'отсутствует' }}</strong></p>
+                                </li>
+                                <li>
+                                    <p>Номер дома</p>
+                                    <p><strong>отсутствует</strong></p>
+                                </li>
+                                <li>
+                                    <p>Донат-счёт</p>
+                                    <p>
+                                        <strong>{{ user['brilliant'] }} <sup>руб.</sup></strong>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="textright logout">
+                    <p><a href="/cabinet/logout/">Выход из аккаунта</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/js/progressbar.min.js"></script>
+    <script src="/assets/js/script_cabinet.js"></script>
+    <script>
+        levelbarcircle.animate(0.02);
+        gun_1_sdpistol.animate(0);
+        gun_2_deagle.animate(0);
+        gun_3_shoutgun.animate(0);
+        gun_4_mp5.animate(0);
+        gun_5_ak47.animate(0);
+        gun_6_m4.animate(0);
+    </script>
+    {{ serversmodal }}
+    <script src="/assets/owl/owl.carousel.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/js/anime.min.js"></script>
+    <script src="/assets/js/jquery.toTop.min.js"></script>
+    <script src="/assets/js/jquery.dd.min.js"></script>
+    <script src="/assets/js/clipboard.min.js"></script>
+    <script src="/assets/js/jquery.scrollbar.min.js"></script>
+    <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/script_all.js"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+{{ head }}
+<body class="gamerspage siluets">
+    {{ header }}
+    <div id="content" class="content">
+        <div class="container-fluid">
+            <div class="high-width">
+                <div class="middle-width">
+                    <div class="enterserver-wrap">
+                        <p>Выберите сервер</p>
+                        {% for key, server in servers %}
+                            <div class="server-item">
+                                <input type="radio" class="radio" name="enterserver" id="{{ server['VISIBLE_NAME']|lower }}" value="{{ key }}" onclick="app.update_tab_by_server();" />
+                                <label for="{{ server['VISIBLE_NAME']|lower }}"><img class="color-img" src="{{ server['ICON_PATH'] }}" alt="" /><img class="dark-img" src="{{ server['ICON_PATH_DARK'] }}" alt="" /> {{ server['VISIBLE_NAME'] }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="enterserver-select-wrap">
+                    <select class="enterserver-select" name="enterserver" onchange="showValue(this.value)">
+                        <option selected="" disabled="">Выберите сервер</option>
+                        {% for key, server in servers %}
+                            <option data-image="{{ server['ICON_PATH'] }}" value="{{ key }}">{{ server['VISIBLE_NAME'] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="gamers-wrap">
+                    <input type="hidden" value="MjIyMjIwMjAtMjAyMDA1LUs0ODA1MDhD" name="asc" />
+                    <div class="col-md-3 padd-clear">
+                        <div class="user-cab-menu-open"><img src="/assets/images\menu.svg" alt="" />Фильтр профессий</div>
+                        <ul class="nav nav-tabs gamers-list">
+                            <li><a href="#allgamers" onclick="app.get_online_players('all');" data-tab="all" data-toggle="tab">Все игроки онлайн</a></li>
+                            <li><a href="#bus" onclick="app.get_online_players('bus');" data-tab="bus" data-toggle="tab">Водители автобуса</a></li>
+                            <li><a href="#taxi" onclick="app.get_online_players('taxi');" data-tab="taxi" data-toggle="tab">Таксисты</a></li>
+                            <li><a href="#dalnoboi" onclick="app.get_online_players('truck');" data-tab="truck" data-toggle="tab">Дальнобойщики</a></li>
+                            <li><a href="#mechanic" onclick="app.get_online_players('mech');" data-tab="mech" data-toggle="tab">Механики</a></li>
+                            <li><a href="#products" onclick="app.get_online_players('prod');" data-tab="prod" data-toggle="tab">Развозчики продуктов</a></li>
+                            <li><a href="#fill" onclick="app.get_online_players('fuel');" data-tab="fuel" data-toggle="tab">Развозчики топлива</a></li>
+                            <li><a href="#rozisk" onclick="app.get_online_players('wanted');" data-tab="wanted" data-toggle="tab">Разыскиваемые</a></li>
+                            <li><a href="#jail" onclick="app.get_online_players('jail');" data-tab="jail" data-toggle="tab">Заключённые</a></li>
+                        </ul>
+                        <ul class="nav nav-tabs gamers-list mobile-gamers-list">
+                            <li><a href="#allgamers" onclick="app.get_online_players('all');" data-tab="all" data-toggle="tab">Все игроки онлайн</a></li>
+                            <li><a href="#bus" onclick="app.get_online_players('bus');" data-tab="bus" data-toggle="tab">Водители автобуса</a></li>
+                            <li><a href="#taxi" onclick="app.get_online_players('taxi');" data-tab="taxi" data-toggle="tab">Таксисты</a></li>
+                            <li><a href="#dalnoboi" onclick="app.get_online_players('truck');" data-tab="truck" data-toggle="tab">Дальнобойщики</a></li>
+                            <li><a href="#mechanic" onclick="app.get_online_players('mech');" data-tab="mech" data-toggle="tab">Механики</a></li>
+                            <li><a href="#products" onclick="app.get_online_players('prod');" data-tab="prod" data-toggle="tab">Развозчики продуктов</a></li>
+                            <li><a href="#fill" onclick="app.get_online_players('fuel');" data-tab="fuel" data-toggle="tab">Развозчики топлива</a></li>
+                            <li><a href="#rozisk" onclick="app.get_online_players('wanted');" data-tab="wanted" data-toggle="tab">Разыскиваемые</a></li>
+                            <li><a href="#jail" onclick="app.get_online_players('jail');" data-tab="jail" data-toggle="tab">Заключённые</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-9 padd-clear">
+                        <!-- Tab panes -->
+                        <div class="tab-content gamers-content">
+                            <div class="tab-pane active fade in" id="allgamers">
+                                <div class="scrollbar-inner"><table class="main-table" id="sel_all_players"></table></div>
+                            </div>
+                            <div class="tab-pane fade" id="bus">
+                                <div class="scrollbar-inner"><table class="main-table" id="sel_bus_players"></table></div>
+                            </div>
+                            <div class="tab-pane fade" id="taxi">
+                                <div class="scrollbar-inner"><table class="main-table" id="sel_taxi_players"></table></div>
+                            </div>
+                            <div class="tab-pane fade" id="dalnoboi">
+                                <div class="scrollbar-inner"><table class="main-table" id="sel_truck_players"></table></div>
+                            </div>
+                            <div class="tab-pane fade" id="mechanic">
+                                <div class="scrollbar-inner"><table class="main-table" id="sel_mech_players"></table></div>
+                            </div>
+                            <div class="tab-pane fade" id="products">
+                                <div class="scrollbar-inner"><table class="main-table" id="sel_prod_players"></table></div>
+                            </div>
+                            <div class="tab-pane fade" id="fill">
+                                <div class="scrollbar-inner"><table class="main-table" id="sel_fuel_players"></table></div>
+                            </div>
+                            <div class="tab-pane fade" id="rozisk">
+                                <div class="scrollbar-inner"><table class="main-table" id="sel_wanted_players"></table></div>
+                            </div>
+                            <div class="tab-pane fade" id="jail">
+                                <div class="scrollbar-inner"><table class="main-table" id="sel_jail_players"></table></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            app.init_online_players();
+        });
+    </script>
+    {{ serversmodal }}
+    <script src="/assets/owl\owl.carousel.min.js"></script>
+    <script src="/assets/bootstrap\js\bootstrap.min.js"></script>
+    <script src="/assets/js\anime.min.js"></script>
+    <script src="/assets/js\jquery.toTop.min.js"></script>
+    <script src="/assets/js\jquery.dd.min.js"></script>
+    <script src="/assets\js\tippy.min.js"></script>
+    <script src="/assets/js\clipboard.min.js"></script>
+    <script src="/assets/js\jquery.scrollbar.min.js"></script>
+    <script src="/assets/js\script.js?28052020210218"></script>
+    <script src="/assets/js\script_gamers.js?11042018164438"></script>
+    <script>
+        $(document).ready(function (e) {
+            try {
+                $(".enterserver-select").msDropDown();
+            } catch (e) {
+                alert(e.message);
+            }
+        });
+    </script>
+    <script src="/assets/js\script_all.js"></script>
+    <script src="/assets/js\app.js?08052020180740"></script>
+</body>
+</html>

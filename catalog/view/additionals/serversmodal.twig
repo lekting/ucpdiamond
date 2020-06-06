@@ -1,0 +1,17 @@
+<div id="serversmodal">
+        <i class="closethis"></i> 
+        <ul class="servers modaling">
+        {% for key, server in servers %}
+            <li class="{{ server['VISIBLE_NAME']|lower }}">
+                <a>
+                    <div class="s-name">
+                        <i class="s-ico"></i> 
+                        <p>{{ server['VISIBLE_NAME'] }}<br><small>545 / 1000</small></p>
+                    </div>
+                    <div class="progress-wrap"><i style="width: 54.5%"></i></div>
+                    <i class="copy-server" data-clipboard-text="emerald.diamondrp.ru:7777">emerald.diamondrp.ru:7777</i> 
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
