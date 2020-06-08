@@ -3,13 +3,34 @@
 class User {
 
 	protected $registry;
+    const salt = "034errt$#foerwto%^^@#";
 	
 	public function __construct($registry) {
 		$this->registry = $registry;
 	}
 
-	public function fetchByToken($token) {
-		$db = $this->registry->get('db');
+	private function getDB($server = false) {
+		if($this->registry->has('db'))
+			$db = $this->registry->get('db');
+		
+		if(!isset($db)) {
+			if(isset($server) && !empty($server) && isset($this->registry->get('servers')[$server])) {
+				$server = $this->registry->get('servers')[$server];
+				$db = new DB\MySQLi($server['MYSQL_HOST'], $server['MYSQL_LOGIN'], $server['MYSQL_PASSWORD'], $server['MYSQL_DB']);
+			} else
+				throw new \Exception("Error USER|fetch -> mysqli not connected");
+		}
+
+		return $db;
+	}
+
+	public function authorizeUser($nickname, $server) {
+		setcookie('server', $server, time() + 86400);
+		setcookie('token', md5($login.$password.self::salt.time()), time() + 86400);
+	}
+
+	public function fetchByToken($token, $server) {
+		$db = $this->getDB($server);
 
 		$token = $db->escape($token);
 
@@ -23,18 +44,20 @@ class User {
 		return $user->rows[0];
 	}
 	
-	public function fetch($nickname, $password = false) {
-		$db = $this->registry->get('db');
+	public function fetch($nickname, $password, $server) {
+		$db = $this->getDB();
 
 		$nickname = $db->escape($nickname);
 
 		//TODO: HASH PASSWORD
 		$password = $db->escape($password);
 
-		$sql = "SELECT * FROM `aplayerakk` WHERE `nickname`='{$nickname}' LIMIT 1";
+		$sql = "SELECT * FROM `aplayerakk` WHERE `nickname`='{$nickname}'";
 
 		if($password && !empty($password))
 			$sql .= " AND `password`='{$password}'";
+
+		$sql .= ' LIMIT 1';
 
 		return $db->query($sql);
 	}

@@ -30,8 +30,8 @@ $servers = array(
 		'PORT' => '7777',
 		'MYSQL_HOST' => '127.0.0.1',
 		'MYSQL_LOGIN' => 'root',
-		'MYSQL_PASSWORD' => '',
-		'MYSQL_DB' => 'grandrp',
+		'MYSQL_PASSWORD' => 'root',
+		'MYSQL_DB' => 'diamond',
 		'MYSQL_TABLE' => 'accounts'
    ),
 
@@ -43,8 +43,8 @@ $servers = array(
 		'PORT' => '7777',
 		'MYSQL_HOST' => '127.0.0.1',
 		'MYSQL_LOGIN' => 'root',
-		'MYSQL_PASSWORD' => '',
-		'MYSQL_DB' => 'grandrp',
+		'MYSQL_PASSWORD' => 'root',
+		'MYSQL_DB' => 'diamond',
 		'MYSQL_TABLE' => 'accounts'
    )
 );

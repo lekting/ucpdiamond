@@ -7,10 +7,10 @@ final class MySQLi {
 		$this->connection = new \mysqli($hostname, $username, $password, $database, $port);
 
 		if ($this->connection->connect_error) {
-			throw new \Exception('Error: ' . $this->connection->error . '<br />Error No: ' . $this->connection->errno);
+			throw new \Exception("Error MySQL: {$this->connection->error}<br />Error No: {$this->connection->errno}");
 		}
 
-		$this->connection->set_charset("utf8");
+		$this->connection->set_charset('utf8');
 		$this->connection->query("SET SQL_MODE = ''");
 	}
 
@@ -21,9 +21,8 @@ final class MySQLi {
 			if ($query instanceof \mysqli_result) {
 				$data = array();
 
-				while ($row = $query->fetch_assoc()) {
+				while ($row = $query->fetch_assoc())
 					$data[] = $row;
-				}
 
 				$result = new \stdClass();
 				$result->num_rows = $query->num_rows;
@@ -33,12 +32,12 @@ final class MySQLi {
 				$query->close();
 
 				return $result;
-			} else {
-				return true;
 			}
-		} else {
-			throw new \Exception('Error: ' . $this->connection->error  . '<br />Error No: ' . $this->connection->errno . '<br />' . $sql);
+			
+			return true;
 		}
+		
+		throw new \Exception("Error MySQL: {$this->connection->error}<br />Error No: {$this->connection->errno}<br> SQL:{$sql}");
 	}
 
 	public function escape($value) {
@@ -56,8 +55,12 @@ final class MySQLi {
 	public function connected() {
 		return $this->connection->ping();
 	}
+
+	public function close() {
+		$this->connection->close();
+	}
 	
 	public function __destruct() {
-		$this->connection->close();
+		$this->close();
 	}
 }

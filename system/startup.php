@@ -15,8 +15,6 @@ $twig = new \Twig\Environment($loader, [
 ]);
 $registry->set('twig', $twig);
 
-$db = new DB\MySQLi(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE, DB_PORT);
-$registry->set('db', $db);
 
 $router = new Router();
 $router->registerAllRoutes();
@@ -31,6 +29,12 @@ $registry->set('user', $user);
 
 $registry->set('servers', $servers);
 
+if(isset($_COOKIE['server']) && !empty($_COOKIE('server')) && isset($servers[$_COOKIE['server']])) {
+    $server = $servers[$_COOKIE['server']];
+    $db = new DB\MySQLi($server['MYSQL_HOST'], $server['MYSQL_LOGIN'], $server['MYSQL_PASSWORD'], $server['MYSQL_DB']);
+    $registry->set('db', $db);
+}
+
 require_once DIR_SYSTEM . 'engine/controller.php';
 
 $action = 'main';
@@ -38,6 +42,9 @@ if(isset($_GET['action']))
     $action = stripslashes(htmlspecialchars(trim($_GET['action'])));
 
 $data = $loader->controller($action, array(), true);
+
+if($registry->has('db'))
+    $registry->get('db')->close();
 
 if(!$data) {
     print_r('Error: couldn\'t load file '. $action);

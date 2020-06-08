@@ -3,9 +3,8 @@ class ControllerLogin extends Controller {
 	
 	public function index($data = []) {
 
-		if(isset($_POST['server'])) {
+		if(isset($_POST['server']))
 			return $this->processQuery();
-		}
 
 		$data['serversmodal'] = $this->load->controller('additionals/serversmodal');
 
@@ -33,7 +32,7 @@ class ControllerLogin extends Controller {
 		if(strlen($code) > 4)
 			return 'incorrect_code';
 
-		$user = $this->user->fetch($nickname, $password);
+		$user = $this->user->fetch($nickname, $password, $server);
 
 		if($user->num_rows === 0)
 			return 'invalid_password';
@@ -42,6 +41,8 @@ class ControllerLogin extends Controller {
 
 		if($user['code'] !== '0000' && $user['code'] !== $code)
 			return 'invalid_code';
+
+		$this->user->authorizeUser($nickname, $server);
 
 		return 'success_login';
 	}
