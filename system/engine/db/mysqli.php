@@ -57,7 +57,8 @@ final class MySQLi {
 	}
 
 	public function close() {
-		$this->connection->close();
+		if($this->connection && $this->connected())
+			$this->connection->close();
 	}
 	
 	public function __destruct() {

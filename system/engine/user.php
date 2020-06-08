@@ -9,7 +9,7 @@ class User {
 		$this->registry = $registry;
 	}
 
-	private function getDB($server = false) {
+	private function getDB($server = null) {
 		if($this->registry->has('db'))
 			$db = $this->registry->get('db');
 		
@@ -17,6 +17,7 @@ class User {
 			if(isset($server) && !empty($server) && isset($this->registry->get('servers')[$server])) {
 				$server = $this->registry->get('servers')[$server];
 				$db = new DB\MySQLi($server['MYSQL_HOST'], $server['MYSQL_LOGIN'], $server['MYSQL_PASSWORD'], $server['MYSQL_DB']);
+				$this->registry->set('db', $db);
 			} else
 				throw new \Exception("Error USER|fetch -> mysqli not connected");
 		}
@@ -26,7 +27,15 @@ class User {
 
 	public function authorizeUser($nickname, $server) {
 		setcookie('server', $server, time() + 86400);
-		setcookie('token', md5($login.$password.self::salt.time()), time() + 86400);
+
+		$token = md5($nickname.self::salt.time());
+		setcookie('token', $token, time() + 86400);
+		
+		$db = $this->getDB($server);
+
+		$user = $db->query("SELECT `id` FROM `aplayerakk` WHERE `nickname`='{$nickname}'")->rows[0];
+
+		$db->query("INSERT INTO `site_access_tokens` VALUES({$user['id']}, '{$token}')");
 	}
 
 	public function fetchByToken($token, $server) {
@@ -45,7 +54,7 @@ class User {
 	}
 	
 	public function fetch($nickname, $password, $server) {
-		$db = $this->getDB();
+		$db = $this->getDB($server);
 
 		$nickname = $db->escape($nickname);
 

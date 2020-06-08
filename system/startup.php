@@ -43,9 +43,6 @@ if(isset($_GET['action']))
 
 $data = $loader->controller($action, array(), true);
 
-if($registry->has('db'))
-    $registry->get('db')->close();
-
 if(!$data) {
     print_r('Error: couldn\'t load file '. $action);
     return;

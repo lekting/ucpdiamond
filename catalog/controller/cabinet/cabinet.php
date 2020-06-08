@@ -9,7 +9,7 @@ class ControllerCabinet extends Controller {
 		$data['header'] = $this->load->view('additionals/header');
 		$data['head'] = $this->load->view('additionals/head');
 
-		$data['user'] = $this->user->fetchByToken('test');
+		$data['user'] = $this->user->fetchByToken('test', $_COOKIE['server']);
 
 		return $this->load->view('cabinet/cabinet', $data);
 	}
