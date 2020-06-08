@@ -1,14 +1,14 @@
 <?php
 class ControllerLauncher extends Controller {
-    public function index($data = []) {
+	public function index($data = []) {
 
-        $data['title'] = 'test';
+		$data['title'] = 'test';
 
-        $data['serversmodal'] = $this->load->controller('additionals/serversmodal');
+		$data['serversmodal'] = $this->load->controller('additionals/serversmodal');
 
-        $data['header'] = $this->load->view('additionals/header');
-        $data['head'] = $this->load->view('additionals/head');
+		$data['header'] = $this->load->view('additionals/header');
+		$data['head'] = $this->load->view('additionals/head');
 
-        return $this->load->view('launcher/launcher', $data);
-    }
+		return $this->load->view('launcher/launcher', $data);
+	}
 }

@@ -1,16 +1,16 @@
 <?php
 class ControllerVip extends Controller {
-    public function index($data = []) {
+	public function index($data = []) {
 
-        $data['title'] = 'test';
+		$data['title'] = 'test';
 
-        $data['serversmodal'] = $this->load->controller('additionals/serversmodal');
+		$data['serversmodal'] = $this->load->controller('additionals/serversmodal');
 
-        $data['header'] = $this->load->view('additionals/header');
-        $data['head'] = $this->load->view('additionals/head');
+		$data['header'] = $this->load->view('additionals/header');
+		$data['head'] = $this->load->view('additionals/head');
 
-        $data['servers'] = $this->servers;
+		$data['servers'] = $this->servers;
 
-        return $this->load->view('donate/vip', $data);
-    }
+		return $this->load->view('donate/vip', $data);
+	}
 }
